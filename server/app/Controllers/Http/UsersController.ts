@@ -1,8 +1,10 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import User from 'App/Models/User'
+import Student from 'App/Models/Student';
 
 export default class UsersController {
   public async index ({}: HttpContextContract) {
+    const user = await Student.all();
+    return user;
   }
 
   public async create ({}: HttpContextContract) {
@@ -10,7 +12,7 @@ export default class UsersController {
 
   public async store ({ request }: HttpContextContract) {
   const body = request.body();
-  const user = await User.create(body);
+  const user = await Student.create(body);
   return user;
   }
 
