@@ -25,6 +25,10 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 Route.group(() => {
-Route.resource('/user','UsersController');
-})
-.prefix('/api')
+  Route.group(() => {
+    Route.resource('/user','UsersController');
+  }).middleware('auth')
+
+Route.post('/register','RegistersController.index');
+
+}).prefix('/api')
